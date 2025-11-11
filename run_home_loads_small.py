@@ -5,18 +5,14 @@ import glob
 
 
 log_file = 'results/home_loads/experiment_log.txt'
-no_of_months = 1
 
-    
+# run for 7 data points for each small home
 start_time = []
 hr = [0, 6, 9, 12, 15, 18, 22]
 for h in hr:
     np.random.seed(42)
     day = np.random.randint(1,28)
-    if no_of_months == 12:
-        start_time = [(f"{i+1},{day},{h}") for i in range(no_of_months)]
-    else:
-        start_time.append(f"{5},{day},{h}")
+    start_time.append(f"{5},{day},{h}")
 
 small_homes = glob.glob("datasets/home-energy-profile/8kw_pv_small_*.parquet", recursive=True)
 
