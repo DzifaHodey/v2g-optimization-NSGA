@@ -3,20 +3,15 @@ import itertools
 import numpy as np
 
 log_file = 'results/batt_sizes/experiment_log.txt'
-no_of_months = 12
 
-    
+# run for 84 data points (7hrs for each month) for each pv size
 start_time = []
 hr = [0, 6, 9, 12, 15, 18, 22]
 for h in hr:
     np.random.seed(42)
     day = np.random.randint(1,28)
-    if no_of_months == 12:
-        start_time = [(f"{i+1},{day},{h}") for i in range(no_of_months)]
-    else:
-        start_time.append(f"{5},{day},{h}")
-
-
+    start_time.extend([(f"{i+1},{day},{h}") for i in range(12)])
+    
 param_grid = {
     'energy_profile_path' : ['datasets/home-energy-profile/8kw_pv_med_home1907_tou1.parquet'],
     'start_time' : start_time,
