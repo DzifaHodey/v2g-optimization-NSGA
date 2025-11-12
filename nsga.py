@@ -81,7 +81,7 @@ def evaluate_objectives(charging_schedule, params: Params) -> float:
 
 def calculate_net_energy_cost(current_charging_rate, p_load_t, p_pv_t, energy_buying_cost, energy_selling_cost):
     # net charge/discharge rate
-    r_net_t = (ALPHA * current_charging_rate) if current_charging_rate > 0 else (1 / BETA) * current_charging_rate     
+    r_net_t = (current_charging_rate / ALPHA) if current_charging_rate > 0 else (current_charging_rate * BETA)
     
     # Net load (kWh), negative load means excess energy from pv/battery
     L_t = r_net_t + p_load_t - p_pv_t

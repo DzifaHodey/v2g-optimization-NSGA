@@ -8,7 +8,6 @@ from genetic_algorithm import update_battery_state, enforce_constraints, calcula
 T = 6    # Time horizon (hours)
 N = T*4     #total number of data points
 B_MIN = 0       # Minimum battery capacity (kWh)
-DELTA_T = 1         # 15mins Time step  (hours)
 SOC_MIN = 0.3       # Minimum state of charge (percentage of total capacity)
 SOH_MIN = 0.7       # Minimum state of health (percentage of nominal capacity)
 ALPHA = 0.99       # Battery charging efficiency (percentage)
@@ -37,10 +36,10 @@ def rule_based_v2g(params:Params):
     total_batt_deg_cost = 0
     net_load = []
     lambda_e_values = []
-    charging_schedule = ()
+    charging_schedule = []
 
-    r_net_charging = params.r_cmax * ALPHA  # Effective charging rate considering efficiency
-    r_net_discharging = params.r_dmin / BETA
+    r_net_charging = params.r_cmax/ ALPHA  # Effective charging rate considering efficiency
+    r_net_discharging = params.r_dmin * BETA
 
     # global SOCs, SOHs, DODs
     soc, dod, soh = np.zeros(N), np.zeros(N), np.zeros(N)
@@ -107,9 +106,8 @@ def rule_based_v2g(params:Params):
         # Update SOC, SOH, DOD
         if t < N - 1:
             soc_t1, soh_t1, dod_t1 = update_battery_state(soc[t], soh[t], dod[t], delta_dod, delta_soh)
-            soc_t1, soh_t1, dod_t1 = enforce_constraints(soc_t1, soh_t1, dod_t1)
             soc[t+1], soh[t+1], dod[t+1] = soc_t1, soh_t1, dod_t1
 
-        charging_schedule += (current_rate,)
+        charging_schedule.append(current_rate)
         total_cost = total_energy_cost + total_batt_deg_cost
     return charging_schedule, total_cost, total_energy_cost, total_batt_deg_cost, net_load, soc, soh, dod

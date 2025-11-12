@@ -50,7 +50,10 @@ def uncontrolled_charging(params:Params):
     charging_schedule = [params.r_cmax] * N
 
     for t in range(N):
-        r_net = current_rate * ALPHA  # Effective charging rate considering efficiency
+        if soc[t] >= params.soc_target:
+            current_rate = 0
+            charging_schedule[t] = 0
+        r_net = current_rate / ALPHA  # Effective charging rate considering efficiency
         L_t = p_pv[t] - p_load[t] - r_net   # Net load at time t (positive means excess generation)
         if L_t < 0:    # if pv is not sufficient
             # Buying energy from grid
