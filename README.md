@@ -1,7 +1,5 @@
 # V2G Optimization using NSGA-II
 
-## Overview
-
 This repository presents a **multi-objective optimization framework for Vehicle-to-Grid (V2G) and Vehicle-to-Home (V2H) operations** in PV-integrated residential homes. The framework determines optimal EV charging and discharging schedules to simultaneously minimize:
 
 1. Household energy costs
@@ -42,7 +40,7 @@ The problem is formulated as a multi-objective optimization task and solved usin
 │   ├── plotter.py                # Plot results of single experiments
 │   └── analysis.ipynb            # Post-processing and result visualization
 │
-├── results/                     # Saved outputs (plots, logs, Pareto fronts)
+├── results/                     # Saved outputs (data files, plots)
 ├── README.md
 └── requirements.txt
 ```
