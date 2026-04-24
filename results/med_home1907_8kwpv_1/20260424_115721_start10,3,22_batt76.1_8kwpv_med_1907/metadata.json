@@ -1,0 +1,19 @@
+{
+  "full_exp_name": "med_home1907_8kwpv_1",
+  "exp_name": "med_home1907_8kwpv_1_10,3,22",
+  "start_datetime": "10,3,22",
+  "home_size": "med",
+  "home_id": 1907,
+  "pv_size": 8,
+  "electricity_cost_model": "ToU",
+  "output_file_path": "results",
+  "plot_results": "True",
+  "methods": [
+    "no_v2g",
+    "rulebased",
+    "nsga"
+  ],
+  "exp_start_time": "20260424_115610",
+  "exp_end_time": "20260424_115721",
+  "exp_duration_sec": 71.889795
+}
