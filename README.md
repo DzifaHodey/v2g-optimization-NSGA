@@ -95,7 +95,7 @@ Update constants across charging strategies in `constants.py` as necessary, incl
 ### 3. Run experiments
 Use default CLI arguments or pass your preferred values.
 ```
-python main.py
+python src/main.py
 ```
 
 ## 📊 Outputs
