@@ -40,7 +40,7 @@ The problem is formulated as a multi-objective optimization task and solved usin
 │   ├── plotter.py                # Plot results of single experiments
 │   └── analysis.ipynb            # Post-processing and result visualization
 │
-├── results/                     # Saved outputs (plots, logs, Pareto fronts)
+├── results/                     # Saved outputs (data files, plots)
 ├── README.md
 └── requirements.txt
 ```
